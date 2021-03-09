@@ -1,47 +1,62 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App.vue'
+import App from './App'
 import router from './router'
-import store from './store'
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import store from "./store";
 
-import {postRequest} from "@/utils/api";
-import {getRequest} from "@/utils/api";
-import {initMenu} from "@/utils/menus";
+import Element from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import 'font-awesome/css/font-awesome.min.css'
 
-Vue.prototype.getRequest = getRequest;
-Vue.prototype.postRequest = postRequest;
 Vue.config.productionTip = false
-Vue.use(ElementUI);
 
-router.beforeEach(((to, from, next) => {
-    // if (window.sessionStorage.getItem('tokenStr')) {
-    //     initMenu(router, store)
-       //判断用户信息是否存在
-    // if (!window.sessionStorage.getItem('user')) {
-    //     return getRequest().then(res => {
-    //             if (res) {
-                       //存入用户信息
-    //                 window.sessionStorage.setItem('user', JSON.stringify(res));
-    //                 next();
-    //             }
-    //         }
-    //     )
-    // }
-    //     next();
-    // }else {
-    //     if (to.path=='/'){
-    //         next();
-    //     }else{
-    //     next('/redirect='+to.path);
-    // }
-    // }
-    initMenu(router, store);
-    next();
+Vue.use(Element)
 
-}))
+import {postRequest} from "./utils/api";
+import {putRequest} from "./utils/api";
+import {getRequest} from "./utils/api";
+import {deleteRequest} from "./utils/api";
+import {downloadRequest} from "./utils/download";
+import {initMenu} from "./utils/menus";
+//插件
+Vue.prototype.postRequest = postRequest;
+Vue.prototype.putRequest = putRequest;
+Vue.prototype.getRequest = getRequest;
+Vue.prototype.deleteRequest = deleteRequest;
+Vue.prototype.downloadRequest = downloadRequest;
+
+router.beforeEach((to, from, next) => {
+  // if (window.sessionStorage.getItem("tokenStr")) {
+  //   initMenu(router, store);
+  //   if (!window.sessionStorage.getItem("user")) {
+  //     return getRequest('/admin/info').then(resp => {
+  //       if (resp) {
+  //         alert(resp);
+  //         //存入用户信息
+  //         window.sessionStorage.setItem("user", JSON.stringify(resp));
+  //         store.commit('INIT_CURRENTAdmin', resp);
+  //         next();
+  //       }
+  //     });
+  //   }
+  //   next();
+  // } else {
+  //   if (to.path == '/') {
+  //     next();
+  //   } else {
+  //     next('/?redirect=' + to.path);
+  //   }
+  // }
+  initMenu(router, store);
+  next();
+})
+
+/* eslint-disable no-new */
 new Vue({
-    router,
-    store,
-    render: h => h(App)
-}).$mount('#app')
+  el: '#app',
+  router,
+  store,
+  components: {App},
+  template: '<App/>'
+})

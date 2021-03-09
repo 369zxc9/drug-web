@@ -12,6 +12,7 @@
         </JoblevelMana>
       </el-tab-pane>
       <el-tab-pane label="奖惩规则" name="ecmana">
+        <EcMana></EcMana>
       </el-tab-pane>
       <el-tab-pane label="权限组" name="permissmana">
         <PermissMana>
@@ -22,19 +23,20 @@
 </template>
 
 <script>
-  import DepMana from "../../components/sys/basic/DepMana";
-  import JoblevelMana from "../../components/sys/basic/JoblevelMana";
-  import PermissMana from "../../components/sys/basic/PermissMana";
-  import PosMana from "../../components/sys/basic/PosMana";
+
+  import DepMana from '../../components/sys/basic/DepMana'
+  import JoblevelMana from '../../components/sys/basic/JoblevelMana'
+  import PermissMana from '../../components/sys/basic/PermissMana'
+  import PosMana from '../../components/sys/basic/PosMana'
 
   export default {
-    name: "systest",
-    data() {
-      return {
+    name: "SysBasic",
+    data(){
+      return{
         activeName: 'posmana'
       }
     },
-    components: {
+    components:{
       DepMana,
       JoblevelMana,
       PermissMana,
